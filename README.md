@@ -7,7 +7,8 @@ With react-emoji-picker!
 
 react-emoji-picker allows you to create a very customizable Slack-like emoji picker in your own user interfaces. It looks a little something like this:
 
-![emoji picker palette, with search bar](http://f.cl.ly/items/1n2z3n1D3B1B0y3o2s03/Image%202015-12-02%20at%2012.53.40%20PM.png)
+<img width="50%" alt="emoji picker palette, with search bar"
+  src="http://f.cl.ly/items/1n2z3n1D3B1B0y3o2s03/Image%202015-12-02%20at%2012.53.40%20PM.png"/>
 
 
 How to use
