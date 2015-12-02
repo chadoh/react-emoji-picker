@@ -1,7 +1,7 @@
 react-emoji-picker
 ==================
 
-Thanks to the awesome work of @banyan on [react-emoji](https://github.com/banyan/react-emoji), it's easy to turn user-generated boring-old plain text like `:laughing:` into super sweet emojis like :laughing: – but how do you introduce emoji n00bs to this brave new world of named emojis?
+Thanks to the awesome work of @banyan on [react-emoji](https://github.com/banyan/react-emoji), it's easy to turn user-generated boring-old plain text like `:laughing:` into super sweet emojis like <img width="20px" height="20px" src="https://twemoji.maxcdn.com/svg/1f606.svg"/> – but how do you introduce emoji n00bs to this brave new world of named emojis?
 
 With react-emoji-picker!
 
