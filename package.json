@@ -2,7 +2,8 @@
   "name": "react-emoji-picker",
   "version": "1.0.0",
   "description": "A React component providing a visual emoji picker, similar to Slack's",
-  "main": "index.js",
+  "repository": "https://github.com/chadoh/react-emoji-picker",
+  "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +16,9 @@
     "react-emoji"
   ],
   "author": "Chad Ostrowski <hi+npm@chadoh.com> (chadoh.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^0.14.3",
+    "react-emoji": "^0.4.1"
+  }
 }
