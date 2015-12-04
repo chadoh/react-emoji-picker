@@ -15,8 +15,8 @@ var tabStyle = {
 }
 
 function filterByName(opts) {
-  return opts.emoji.name.match(`${opts.query}`)
-    || opts.emoji.alternatives.match(`${opts.query}`)
+  return opts.emoji.name.match(opts.query)
+    || opts.emoji.alternatives.match(opts.query)
 }
 
 function filterByCategory(opts) {
@@ -53,7 +53,7 @@ module.exports = React.createClass({
 
   selectFirst: function() {
     if(this.emojis()[0]) {
-      this.props.onSelect(`:${this.emojis()[0].name}:`)
+      this.props.onSelect(':' + this.emojis()[0].name + ':')
     }
   },
 
@@ -120,7 +120,7 @@ module.exports = React.createClass({
   render: function() {
     var that = this;
     var emojiLinks = this.emojis().map(function(emoji) {
-      emoji = `:${emoji.name}:`
+      emoji = ':' + emoji.name} + ':'
       return (
         React.createElement("a", {key: emoji, className: "emoji-picker-emoji",
           onClick: that.props.onSelect.bind(null, emoji),
