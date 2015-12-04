@@ -120,7 +120,7 @@ module.exports = React.createClass({
   render: function() {
     var that = this;
     var emojiLinks = this.emojis().map(function(emoji) {
-      emoji = ':' + emoji.name} + ':'
+      emoji = ':' + emoji.name} + ':';
       return (
         React.createElement("a", {key: emoji, className: "emoji-picker-emoji",
           onClick: that.props.onSelect.bind(null, emoji),
