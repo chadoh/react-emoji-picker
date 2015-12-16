@@ -1,6 +1,6 @@
 {
   "name": "react-emoji-picker",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A React component providing a visual emoji picker, similar to Slack's",
   "repository": "https://github.com/chadoh/react-emoji-picker",
   "main": "index.jsx",
