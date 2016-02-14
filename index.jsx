@@ -5,7 +5,7 @@ var ReactEmoji = require('react-emoji');
 var emojiMap = require('./lib/emojiMap');
 
 function touchDevice() {
-  "ontouchstart" in document.documentElement;
+  return "ontouchstart" in document.documentElement;
 }
 
 var tabWrapStyle = {
