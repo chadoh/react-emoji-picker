@@ -4,6 +4,15 @@ var React = require('react');
 var ReactEmoji = require('react-emoji');
 var emojiMap = require('./lib/emojiMap');
 
+function touchDevice() {
+  "ontouchstart" in document.documentElement;
+}
+
+var tabWrapStyle = {
+  display: 'block',
+  borderBottom: '1px solid silver',
+}
+
 var tabStyle = {
   marginRight: '0.4rem',
   display: 'inline-block',
@@ -12,6 +21,21 @@ var tabStyle = {
   borderBottom: 'none',
   borderRadius: '0.3rem 0.3rem 0 0',
   cursor: 'pointer',
+  position: 'relative',
+  top: 2,
+}
+
+var activeTabStyle = {};
+for (var key in tabStyle) {
+  activeTabStyle[key] = tabStyle[key];
+}
+activeTabStyle.borderBottom = '3px solid white';
+
+var bodyStyle = {
+  display: 'block',
+  margin: '0.3em 0 0',
+  maxHeight: '12.5em',
+  overflowY: 'scroll',
 }
 
 function filterByName(opts) {
@@ -68,44 +92,72 @@ module.exports = React.createClass({
   },
 
   setCategory: function(category) {
-    this.setState({category:category})
+    this.setState({category: category})
   },
 
   header: function() {
+    var cat = this.state.category;
     if(!this.props.query) {
       return (
-        React.createElement("span", null,
-          React.createElement("a", {style: tabStyle, className: "emoji-picker-emoji",
+        React.createElement("span", {style: tabWrapStyle},
+          React.createElement("a", { className: "emoji-picker-emoji",
+            style: cat === 'people' ? activeTabStyle : tabStyle,
             onClick: this.setCategory.bind(this, 'people')},
             this.emojify(':smiley:', {singleEmoji: true})
           ),
-          React.createElement("a", {style: tabStyle, className: "emoji-picker-emoji",
+          React.createElement("a", {className: "emoji-picker-emoji",
+            style: cat === 'nature' ? activeTabStyle : tabStyle,
             onClick: this.setCategory.bind(this, 'nature')},
             this.emojify(':seedling:', {singleEmoji: true})
           ),
-          React.createElement("a", {style: tabStyle, className: "emoji-picker-emoji",
+          React.createElement("a", {className: "emoji-picker-emoji",
+            style: cat === 'objects' ? activeTabStyle : tabStyle,
             onClick: this.setCategory.bind(this, 'objects')},
             this.emojify(':telescope:', {singleEmoji: true})
           ),
-          React.createElement("a", {style: tabStyle, className: "emoji-picker-emoji",
+          React.createElement("a", {className: "emoji-picker-emoji",
+            style: cat === 'places' ? activeTabStyle : tabStyle,
             onClick: this.setCategory.bind(this, 'places')},
             this.emojify(':bike:', {singleEmoji: true})
           ),
-          React.createElement("a", {style: tabStyle, className: "emoji-picker-emoji",
+          React.createElement("a", {className: "emoji-picker-emoji",
+            style: cat === 'symbols' ? activeTabStyle : tabStyle,
             onClick: this.setCategory.bind(this, 'symbols')},
             this.emojify(':1234:', {singleEmoji: true})
-          ),
-          React.createElement("br", null)
+          )
         )
       )
     }
   },
 
+  body: function() {
+    var that = this;
+
+    var emojiLinks = this.emojis().map(function(emoji) {
+      emoji = ':' + emoji.name + ':';
+      return (
+        React.createElement("a", {key: emoji, className: "emoji-picker-emoji",
+          onClick: that.props.onSelect.bind(null, emoji),
+          onMouseEnter: !touchDevice() && that.hovered.bind(that, emoji),
+          onMouseLeave: !touchDevice() && that.blurred,
+          style: {padding: '0.2rem', cursor: 'pointer'}},
+          that.emojify(emoji, {singleEmoji: true})
+        )
+      )
+    });
+
+    if(emojiLinks.length === 0) emojiLinks = "No emojis found";
+
+    return React.createElement("span", {style: bodyStyle}, emojiLinks);
+  },
+
   footer: function() {
     if(this.state.hovered) {
-      return React.createElement("span", null,
-               React.createElement("br", null), this.state.hovered
-             )
+      return (
+        React.createElement("span", null,
+          this.state.hovered
+        )
+      );
     }
   },
 
@@ -118,25 +170,10 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var that = this;
-    var emojiLinks = this.emojis().map(function(emoji) {
-      emoji = ':' + emoji.name + ':';
-      return (
-        React.createElement("a", {key: emoji, className: "emoji-picker-emoji",
-          onClick: that.props.onSelect.bind(null, emoji),
-          onMouseEnter: that.hovered.bind(that, emoji),
-          onMouseLeave: that.blurred,
-          style: {padding: '0.2rem', cursor: 'pointer'}},
-          that.emojify(emoji, {singleEmoji: true})
-        )
-      )
-    })
-    if(emojiLinks.length === 0) emojiLinks = "No emojis found";
-
     return (
       React.createElement("span", {style: this.props.style},
         this.header(),
-        emojiLinks,
+        this.body(),
         this.footer()
       )
     )
