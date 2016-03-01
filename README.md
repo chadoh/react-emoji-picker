@@ -20,8 +20,8 @@ If you want an emoji picker that looks like the above, first install this packag
 
 ``` javascript
 var React = require('react');
-var EmojiPicker = require('emoji-picker');
-var emojiMap require('react-emoji-picker/lib/emojiMap');
+var EmojiPicker = require('react-emoji-picker');
+var emojiMap = require('react-emoji-picker/lib/emojiMap');
 
 // styles for the emoji picker wrapper
 var emojiPickerStyles = {
@@ -109,7 +109,7 @@ var MyEmojiInput = React.createClass({
   }
 })
 
-export.defaults = MyEmojiInput
+export default MyEmojiInput;
 ```
 
 Phew! That was a lot of stuff! 
