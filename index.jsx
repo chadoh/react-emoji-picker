@@ -82,7 +82,10 @@ module.exports = React.createClass({
   },
 
   emojis: function() {
-    var query = (this.props.query || '').replace(/:/g, '').replace(/([\+\-])/g, "\\$&");
+    var query = (this.props.query || '').
+      replace(/:/g, '').
+      replace(/([\+\-])/g, "\\$&").
+      toLowerCase();
     var category = this.state.category;
 
     return emojiMap.filter(function(emoji) {
