@@ -52,6 +52,12 @@ module.exports = React.createClass({
   mixins: [ReactEmoji],
   propTypes: {
     query: React.PropTypes.string,
+    doGrabKeyPress: React.PropTypes.bool,
+  },
+  getDefaultProps: function() {
+    return {
+      doGrabKeyPress: true,
+    };
   },
   getInitialState: function() {
     return {
@@ -61,10 +67,14 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function() {
-    document.addEventListener('keydown', this.grabKeyPress, false)
+    if (this.props.doGrabKeyPress) {
+      document.addEventListener('keydown', this.grabKeyPress, false)
+    }
   },
   componentWillUnmount: function() {
-    document.removeEventListener('keydown', this.grabKeyPress, false)
+    if (this.props.doGrabKeyPress) {
+      document.removeEventListener('keydown', this.grabKeyPress, false)
+    }
   },
 
   // if user presses Enter or Tab while EmojiPicker showing
