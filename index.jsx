@@ -53,10 +53,12 @@ module.exports = React.createClass({
   propTypes: {
     query: React.PropTypes.string,
     doGrabKeyPress: React.PropTypes.bool,
+    allowHover: React.PropTypes.bool,
   },
   getDefaultProps: function() {
     return {
       doGrabKeyPress: true,
+      allowHover: true,
     };
   },
   getInitialState: function() {
@@ -165,7 +167,7 @@ module.exports = React.createClass({
   },
 
   footer: function() {
-    if(this.state.hovered) {
+    if(this.state.hovered && this.props.allowHover) {
       return (
         React.createElement("span", null,
           this.state.hovered
