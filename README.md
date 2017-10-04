@@ -1,3 +1,9 @@
+DEPRECATED - use [emoji-mart](https://github.com/missive/emoji-mart)
+====================================================================
+
+I, @chadoh, needed this package back in 2015, because nothing else like it existed. Today, emoji-mart is a thing that exists in the world, and there's no reason to keep using this. Go give emoji-mart a shot. You'll love it!
+
+
 react-emoji-picker
 ==================
 
